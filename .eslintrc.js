@@ -25,5 +25,23 @@ module.exports = {
     'linebreak-style': 'off',
     'no-console': 'warn',
     'no-param-reassign': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        ts: 'never',
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: [
+          '.js',
+          '.ts',
+        ],
+      },
+    },
   },
 };
