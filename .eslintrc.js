@@ -15,6 +15,7 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'no-redeclare': 'off',
     quotes: ['error', 'single'],
     // we want to force semicolons
     semi: ['error', 'always'],
@@ -25,6 +26,7 @@ module.exports = {
     'linebreak-style': 'off',
     'no-console': 'warn',
     'no-param-reassign': 'off',
+    'max-len': ['error', { code: 180 }],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -34,6 +36,10 @@ module.exports = {
       },
     ],
   },
+  // without this settings 'import' of .ts and .js files does not working
+  // if set './config/serviceConfig.ts' (with extension) then TS said 'An import path cannot end with a '.ts' extension.'
+  // if set './config/serviceConfig' (without extension) then ESLINT said 'Missing file extension for "./config/serviceConfig"'
+  // and 'Unable to resolve path to module './config/serviceConfig''
   settings: {
     'import/resolver': {
       node: {
