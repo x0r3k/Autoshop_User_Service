@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Request } from 'express';
-import { TErrorObject, TFormedErrorObject } from './errorHandling.interface';
+import { TErrorObject /* TFormedErrorObject */ } from './errorHandling.interface';
 import { TArrayObject } from '../../types/global.type';
 
 // function errorObjectBuilder(request: Request, errorObj: TErrorObject, message: string, details: TArrayObject): TFormedErrorObject {

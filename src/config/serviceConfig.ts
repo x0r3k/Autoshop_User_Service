@@ -1,11 +1,4 @@
-interface IServiceConfig {
-  [key: string]: {
-    port: string,
-    baseApiUrl: string,
-    baseUrl: string,
-    testValue?: number
-  }; // Must accommodate all members
-}
+import { IServiceConfig } from './config.interface';
 
 const config: IServiceConfig = {
   development: {
