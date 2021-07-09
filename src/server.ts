@@ -6,6 +6,7 @@ import config from './config/serviceConfig';
 import {
   errorHandler, httpErrorHandler, createHttpError, MAIN_ERROR_CODES,
 } from './services/errorHandling';
+import { TestRouter } from './api/index';
 // import errorHandler from './services/errorHandling/errorHandler';
 
 require('dotenv').config();
@@ -21,6 +22,8 @@ app.use(express.urlencoded({
 }));
 
 const baseApiUrl = config[process.env.NODE_ENV].baseApiUrl || '/api';
+
+app.use(baseApiUrl, TestRouter);
 
 app.get(baseApiUrl, (req, res) => {
   res.send('Hello world');

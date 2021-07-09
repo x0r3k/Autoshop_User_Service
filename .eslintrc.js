@@ -26,6 +26,11 @@ module.exports = {
     'linebreak-style': 'off',
     'no-console': 'warn',
     'no-param-reassign': 'off',
+    // check next rules - fix dynamic require in sequelize/models/index
+    'import/no-dynamic-require': 'off',
+    'global-require': 'off',
+    //
+    'no-underscore-dangle': ['error', { allowAfterThis: true }],
     'max-len': ['error', { code: 180 }],
     'import/extensions': [
       'error',
