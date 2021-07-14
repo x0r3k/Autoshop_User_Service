@@ -1,21 +1,16 @@
-import path from 'path';
-import { Model, Sequelize } from 'sequelize';
-import { testFactory } from './test';
+// import path from 'path';
+import { Sequelize } from 'sequelize';
+import { testFactory } from './tests';
 
 const configFile = require('../config/config.json');
 
 // eslint-disable-next-line import/no-dynamic-require
 
-const basename = path.basename(__filename);
+// const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const dbConfig = configFile[env];
 
-let sequelize;
-if (dbConfig.use_env_variable) {
-  sequelize = new Sequelize(process.env[dbConfig.use_env_variable], dbConfig);
-} else {
-  sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
-}
+const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
 
 const db = {
   sequelize,

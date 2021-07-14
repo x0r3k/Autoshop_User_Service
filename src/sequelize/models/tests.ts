@@ -1,5 +1,5 @@
 import {
-  Model, Sequelize, DataTypes, Optional, BuildOptions,
+  Model, Sequelize, DataTypes, Optional,
 } from 'sequelize';
 
 export interface TestAttributes {
@@ -7,8 +7,8 @@ export interface TestAttributes {
   firstName: string;
   lastName: string;
   email: boolean;
-  createdAt?: string;
-  updatedAt?: string;
+  // createdAt?: string;
+  // updatedAt?: string;
 }
 
 export interface TestCreationAttributes extends Optional<TestAttributes, 'id'> {}
@@ -37,7 +37,7 @@ export function testFactory(sequelize: Sequelize) {
     },
   }, {
     sequelize,
-    modelName: 'Test',
+    modelName: 'tests',
     freezeTableName: true,
   });
 
