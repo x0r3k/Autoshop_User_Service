@@ -20,8 +20,8 @@ export function userFactory(sequelize: Sequelize) {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(/* models */) {
-      // define association here
+    static associate(models: any) {
+      UserModel.hasMany(models.tests, { foreignKey: { name: 'fk_users_id', allowNull: false }, foreignKeyConstraint: true });
     }
   }
 

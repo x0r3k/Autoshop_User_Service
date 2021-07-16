@@ -16,6 +16,16 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
+      fk_users_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'users',
+            key: 'id',
+          },
+        },
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

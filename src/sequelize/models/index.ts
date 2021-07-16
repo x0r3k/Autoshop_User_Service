@@ -2,7 +2,7 @@
 import { Sequelize } from 'sequelize';
 import { testFactory } from './tests';
 
-const configFile = require('../config/config.json');
+import configFile from '../config/config';
 
 // eslint-disable-next-line import/no-dynamic-require
 
