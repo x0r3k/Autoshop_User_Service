@@ -8,7 +8,6 @@
     "start": "env NODE_ENV=production node dist/index.js",
     "start:dev": "nodemon",
     "build": "env NODE_ENV=production rm -rf dist/ && tsc",
-    "postbuild": "cp -r src/sequelize/config dist/sequelize/config",
     "db:migrate": "sequelize db:migrate",
     "db:seed:all": "sequelize db:seed:all",
     "init:database": "sequelize db:drop && sequelize db:create && npm run db:migrate && npm run db:seed:all",

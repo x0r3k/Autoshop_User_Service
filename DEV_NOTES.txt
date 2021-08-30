@@ -1,0 +1,56 @@
+1. try to fix Sequelize JSON config import and compilation
+1.1 .json does not move to dist/ with tsc if used "require"
+1.2 .json moves to dist/ if "import" but it cant be reached by indexing [env]
+1.3 .js and .ts same to 1.2
+1.4 if write [key: string] interface to config, then it can be reached by [env], but Sequelize Constructor does not accept this file (wrong interface)
+
+1 - Fixed
+
+2. Try to create new model/migration and make associations
+
+2 - In progress
+
+3. Improve models.index.ts by automatic invoking of model.associate() if exists
+
+3 - In progress
+
+4. Create type for exported object in models/index.ts
+
+5. Type migrations, change file format to .ts 
+# Cannot be converted because of npm script does not work
+# The same about config.ts
+
+
+6. Type parameter in model.associate(models) by type from p.4
+
+
+// approaches to declare optional attributes in model
+// first approach to set optional attributes during .create() - Directly in ModelAttributes interface
+/**
+ * export interface IAARoleAttributes {
+    roleId?: number;
+    roleCd: string;
+    roleName: string;
+    note?: string;
+  }
+  * class AA_RoleModel extends Model<IAARoleAttributes> implements IAARoleAttributes {
+  * ...
+  * }
+ */
+
+// second approach to set optional attributes during .create() - via Optional class
+/**
+ * export interface IAARoleAttributes {
+    roleId: number;
+    roleCd: string;
+    roleName: string;
+    note: string;
+  }
+ * export interface IAARoleCreationAttributes extends Optional<IAARoleAttributes, 'roleId' | 'note'> {}
+ * class AA_RoleModel extends Model<IAARoleAttributes, IAARoleCreationAttributes> implements IAARoleAttributes {
+ * ...
+ * }
+*/
+
+if dont explicitly set defaultValaue parameter to optional allowNull key in model definition (.Init() function) 
+then key will not returned by .create() method if it does not passed

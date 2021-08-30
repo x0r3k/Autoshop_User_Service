@@ -17,7 +17,7 @@ export interface TestCreationAttributes extends Optional<TestAttributes, 'id'> {
 export function testFactory(sequelize: Sequelize) {
   class TestModel extends Model<TestAttributes, TestCreationAttributes> {
     static associate(models: any) {
-      TestModel.belongsTo(models.users, { foreignKey: { name: 'fk_users_id', allowNull: false }, foreignKeyConstraint: true });
+      TestModel.belongsTo(models.User, { foreignKey: { name: 'fk_users_id', allowNull: false }, foreignKeyConstraint: true });
     }
   }
 

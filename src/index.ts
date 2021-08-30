@@ -1,12 +1,15 @@
 import config from './config/serviceConfig';
 import { httpServer } from './server';
+import db from './sequelize/models';
 
 require('dotenv').config();
 
 const HTTP_PORT = config[process.env.NODE_ENV].port || 6060;
 try {
-  httpServer.listen(HTTP_PORT, async () => {
-    console.log(`Listening on port ${HTTP_PORT} \n NODE ENV ${process.env.NODE_ENV}`);
+  db.sequelize.authenticate().then(() => {
+    httpServer.listen(HTTP_PORT, async () => {
+      console.log(`Listening on port ${HTTP_PORT} \n NODE ENV ${process.env.NODE_ENV}`);
+    });
   });
 } catch (error) {
   console.error(`date: ${new Date()}\n`, error, '\n');

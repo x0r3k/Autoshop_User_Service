@@ -14,14 +14,14 @@ export interface IUsersAttributes {
 export interface IUserCreationAttributes extends Optional<IUsersAttributes, 'id'> {}
 
 export function userFactory(sequelize: Sequelize) {
-  class UserModel extends Model<IUsersAttributes> {
+  class UserModel extends Model<IUsersAttributes, IUserCreationAttributes> {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models: any) {
-      UserModel.hasMany(models.tests, { foreignKey: { name: 'fk_users_id', allowNull: false }, foreignKeyConstraint: true });
+      UserModel.hasMany(models.Test, { foreignKey: { name: 'fk_users_id', allowNull: false }, foreignKeyConstraint: true });
     }
   }
 
