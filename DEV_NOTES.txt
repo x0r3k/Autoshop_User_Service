@@ -54,3 +54,13 @@
 
 if dont explicitly set defaultValaue parameter to optional allowNull key in model definition (.Init() function) 
 then key will not returned by .create() method if it does not passed
+
+
+types, interfaces, enums etc stores in types.ts files
+common and global types stores in /common folder
+specific types stores directly in folder where they are used
+
+find out difference between types and interfaces
+find out usage of enums and namespaces
+read about generics
+change approach of types storing
