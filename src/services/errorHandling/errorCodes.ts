@@ -1,4 +1,4 @@
-import { IErrorCode } from './errorHandling.interface';
+import { IErrorCode } from './types';
 
 const MAIN_ERROR_CODES: IErrorCode = {
   BAD_REQUEST_BODY: {
@@ -31,15 +31,10 @@ const MAIN_ERROR_CODES: IErrorCode = {
     HTTP_CODE: 400,
     DEFAULT_MESSAGE: 'Element already exists',
   },
-  IS_ENDED: {
-    ERROR_CODE: 154,
-    HTTP_CODE: 400,
-    DEFAULT_MESSAGE: 'Course is ended/ video is watched',
-  },
   UNAVAILABLE: {
     ERROR_CODE: 155,
     HTTP_CODE: 400,
-    DEFAULT_MESSAGE: 'ELement is unavailable',
+    DEFAULT_MESSAGE: 'Element is unavailable',
   },
   ELEMENT_NOT_SET: {
     ERROR_CODE: 156,
@@ -65,11 +60,6 @@ const MAIN_ERROR_CODES: IErrorCode = {
     ERROR_CODE: 220,
     HTTP_CODE: 400,
     DEFAULT_MESSAGE: 'Notification error',
-  },
-  SUBSCRIPTION_ERROR: {
-    ERROR_CODE: 230,
-    HTTP_CODE: 400,
-    DEFAULT_MESSAGE: 'Not subscribed or subscription expired',
   },
   DATABASE_ERROR: {
     ERROR_CODE: 240,

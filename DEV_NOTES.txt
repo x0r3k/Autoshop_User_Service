@@ -64,3 +64,5 @@ find out difference between types and interfaces
 find out usage of enums and namespaces
 read about generics
 change approach of types storing
+
+hash and salt have strange length (set 64 - return 128)

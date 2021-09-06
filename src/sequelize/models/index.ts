@@ -8,6 +8,13 @@ import { aaRoleFactory } from './aa_role';
 import { aaSessionFactory } from './aa_session';
 import { aaUserFactory } from './aa_user';
 
+import { ctCustomerFactory } from './ct_customer';
+import { ctCustomerSettingsFactory } from './ct_customer_settings';
+
+import { dcLanguageFactory } from './dc_language';
+import { dcThemeFactory } from './dc_theme';
+import { dcCurrencyFactory } from './dc_currency';
+
 import configFile from '../config/config';
 
 // const basename = path.basename(__filename);
@@ -26,6 +33,13 @@ const db = {
   aaRole: aaRoleFactory(sequelize),
   aaSession: aaSessionFactory(sequelize),
   aaUser: aaUserFactory(sequelize),
+
+  ctCustomer: ctCustomerFactory(sequelize),
+  ctCustomerSettings: ctCustomerSettingsFactory(sequelize),
+
+  dcLanguage: dcLanguageFactory(sequelize),
+  dcTheme: dcThemeFactory(sequelize),
+  dcCurrency: dcCurrencyFactory(sequelize),
 };
 
 Object.values(db).forEach((model: any) => {
