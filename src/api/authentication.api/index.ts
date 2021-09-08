@@ -1,3 +1,3 @@
-import router from './authentication.router';
+import AuthenticationRouter from './authentication.router';
 
-export default router;
+export default AuthenticationRouter;

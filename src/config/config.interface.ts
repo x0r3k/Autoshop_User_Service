@@ -1,8 +1,8 @@
 export interface IServiceConfig {
   [key: string]: {
     port: string,
-    baseApiUrl: string,
-    baseUrl: string,
+    baseApiPath: string,
+    basePath: string,
     testValue?: number
   }; // Must accommodate all members
 }

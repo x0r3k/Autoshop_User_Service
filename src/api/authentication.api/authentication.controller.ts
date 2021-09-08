@@ -7,8 +7,8 @@ const {
   sequelize, aaUser, ctCustomer, ctCustomerSettings, aaProfile, aaRole,
 } = db;
 
-const controllers = {
-  signUp: async (req: Request, res: Response, next: NextFunction) => {
+class AuthenticationController {
+  static async signUp(req: Request, res: Response, next: NextFunction) {
     const transaction = await sequelize.transaction();
     try {
       const errors = validationResult(req);
@@ -46,14 +46,14 @@ const controllers = {
       //   userType: 'I',
       //   password: password,
       // }, { transaction });
-
-      res.status(200).json('Success');
     } catch (error) {
       await transaction.rollback();
-      console.log(error);
       return next(createHttpError(MAIN_ERROR_CODES.SYSTEM_ERROR, 'Something went wrong, please try again'));
     }
-  },
-};
+    return res.status(200).json('Success');
+  }
 
-export default controllers;
+  static test(req: Request, res: Response) { return res.status(200).send('Test auth endpoint'); }
+}
+
+export default AuthenticationController;

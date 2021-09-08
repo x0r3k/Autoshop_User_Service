@@ -1,9 +1,9 @@
 import {
-  param, query,
+  param, query, ValidationChain,
 } from 'express-validator';
 
-const validations = {
-  signUpValidation: [
+export default class AuthenticationMiddleware {
+  static signUpValidation: ValidationChain[] = [
     param('email').exists()
       .withMessage('Email is required')
       .bail()
@@ -58,7 +58,5 @@ const validations = {
       .isInt({ gt: 0 })
       .withMessage('Limit should be integer')
       .bail(),
-  ],
-};
-
-export default validations;
+  ];
+}

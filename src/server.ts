@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
@@ -7,13 +8,14 @@ import {
   errorHandler, httpErrorHandler, createHttpError, MAIN_ERROR_CODES,
 } from './services/errorHandling';
 import Routers from './api';
-// import errorHandler from './services/errorHandling/errorHandler';
 
 require('dotenv').config();
 
+// server creation
 export const app = express();
 export const httpServer = http.createServer(app);
 
+// initial server configurations
 app.set('trust proxy', true);
 app.use(cors());
 app.use(helmet());
@@ -22,16 +24,22 @@ app.use(express.urlencoded({
   extended: true,
 }));
 
-const baseApiUrl = config[process.env.NODE_ENV].baseApiUrl || '/api';
+const baseApiPath = config[process.env.NODE_ENV].baseApiPath || '/api';
 
-app.use(baseApiUrl, ...Routers);
+// routes initialization
+const router = express.Router();
+new Routers.AuthenticationRouter(app, router, baseApiPath);
 
-app.get(baseApiUrl, (req, res) => {
+// default router
+app.get(baseApiPath, (req, res) => {
   res.send('Hello world');
 });
 
+// 404 routes handler
 app.use('*', (req, res, next) => next(createHttpError(MAIN_ERROR_CODES.NOT_FOUND)));
 
+// controller error handler
 app.use(httpErrorHandler);
 
+// rest of errors handler
 app.use(errorHandler);

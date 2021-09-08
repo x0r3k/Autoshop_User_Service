@@ -1,11 +1,20 @@
 import express from 'express';
 import controller from './authentication.controller';
-import validation from './authentication.validation';
+import middleware from './authentication.middleware';
+import CommonRoutesConfig from '../../common/common.routes.config';
 
-const router = express.Router();
+export default class AuthenticationRouter extends CommonRoutesConfig {
+  constructor(app: express.Application, router: express.Router, baseApiPath: string) {
+    super(app, router, baseApiPath, '/authentication', 'UsersRoutes');
+  }
 
-const basePath = '/authentication';
+  configureRoutes() {
+    this.router.get('/sign-up', middleware.signUpValidation, controller.signUp);
 
-router.get(`${basePath}/sign-up`, validation.signUpValidation, controller.signUp);
+    this.router.get('/test', controller.test);
 
-export default router;
+    this.app.use(this.buildPath(), this.router);
+
+    return this.router;
+  }
+}
