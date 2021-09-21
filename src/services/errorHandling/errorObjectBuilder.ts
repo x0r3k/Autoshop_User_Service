@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Request } from 'express';
-import { TErrorObject /* TFormedErrorObject */ } from './types';
-import { TArrayObject } from '../../common/types';
+import { TErrorObject } from './types';
+import { TArrayObject } from '../../types/common/types';
 
 // function errorObjectBuilder(request: Request, errorObj: TErrorObject, message: string, details: TArrayObject): TFormedErrorObject {
 //   return {

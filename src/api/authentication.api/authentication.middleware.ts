@@ -1,20 +1,20 @@
 import {
-  param, query, ValidationChain,
+  param, query, body, ValidationChain,
 } from 'express-validator';
 
 export default class AuthenticationMiddleware {
   static signUpValidation: ValidationChain[] = [
-    param('email').exists()
+    body('email').exists()
       .withMessage('Email is required')
       .bail()
       .isEmail()
       .withMessage('Email does not match format'),
-    query('password').exists()
+    body('password').exists()
       .withMessage('Password is required')
       .bail()
       .notEmpty()
       .withMessage('Password cannot be empty'),
-    query('name').exists()
+    body('name').exists()
       .withMessage('Name is required')
       .bail()
       .notEmpty()
@@ -22,41 +22,40 @@ export default class AuthenticationMiddleware {
       .bail()
       .isLength({ max: 20 })
       .withMessage('Name max length is 20'),
-    query('lastname').optional()
+    body('lastname').optional()
       .notEmpty()
       .withMessage('Last name cannot be empty')
       .bail()
       .isLength({ max: 30 })
       .withMessage('Last name max length is 30'),
-    query('gender').optional()
+    body('gender').optional()
       .notEmpty().withMessage('Offset cannot be empty')
       .bail()
       .isInt({ gt: 0 })
       .withMessage('Limit should be integer')
       .bail(),
-    query('birthdate').optional()
+    body('birthdate').optional()
       .notEmpty().withMessage('Offset cannot be empty')
       .bail()
       .isInt({ gt: 0 })
       .withMessage('Limit should be integer')
       .bail(),
-    query('lastname').optional()
+    body('lastname').optional()
       .notEmpty().withMessage('Offset cannot be empty')
       .bail()
       .isInt({ gt: 0 })
       .withMessage('Limit should be integer')
       .bail(),
-    query('state').optional()
+    body('state').optional()
       .notEmpty().withMessage('Offset cannot be empty')
       .bail()
       .isInt({ gt: 0 })
       .withMessage('Limit should be integer')
       .bail(),
-    query('authType').exists()
-      .notEmpty().withMessage('Offset cannot be empty')
+    body('authType').exists()
+      .withMessage('Auth type is required')
       .bail()
-      .isInt({ gt: 0 })
-      .withMessage('Limit should be integer')
-      .bail(),
+      .notEmpty()
+      .withMessage('Auth type cannot be empty'),
   ];
 }

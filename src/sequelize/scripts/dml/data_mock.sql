@@ -4,9 +4,9 @@
 INSERT INTO `aa_role` (`role_id`,`role_cd`,`role_name`,`note`)
 VALUES
 (1, 'SA', 'Super admin', null),
-(1, 'A', 'Admin', null),
-(1, 'AU', 'Authorized user', null),
-(1, 'UNA', 'Unathorized user', null);
+(2, 'A', 'Admin', null),
+(3, 'AU', 'Authorized user', null),
+(4, 'UNA', 'Unathorized user', null);
 
 -- /*==============================================================*/
 -- /* Table: aa_profile                                            */

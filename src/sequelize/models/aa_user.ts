@@ -4,27 +4,28 @@ import {
 } from 'sequelize';
 
 export interface IAAUserAttributes {
-  userId: number;
+  userId?: string;
   profileId: number;
   roleId: number;
   username: string;
   userType: string;
   password: string;
+  salt: string;
   email: string;
-  name: string;
+  name?: string;
   createdDt: number;
-  lastLoginDt: number;
+  lastLoginDt?: number;
   state: string;
   authType: string;
   lastPswdDt:number;
-  expirationDt: number;
-  lockedDt: number;
+  expirationDt?: number;
+  lockedDt?: number;
   loginAttempt: number;
 }
 
 export function aaUserFactory(sequelize: Sequelize) {
   class AA_UserModel extends Model<IAAUserAttributes> implements IAAUserAttributes {
-    userId: number;
+    userId: string;
 
     profileId: number;
 
@@ -35,6 +36,8 @@ export function aaUserFactory(sequelize: Sequelize) {
     userType: string;
 
     password: string;
+
+    salt: string;
 
     email: string;
 
@@ -67,8 +70,8 @@ export function aaUserFactory(sequelize: Sequelize) {
 
   AA_UserModel.init({
     userId: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       field: 'user_id',
     },
@@ -80,7 +83,7 @@ export function aaUserFactory(sequelize: Sequelize) {
     roleId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'profile_id',
+      field: 'role_id',
     },
     username: {
       type: DataTypes.STRING(128),
@@ -97,6 +100,11 @@ export function aaUserFactory(sequelize: Sequelize) {
       allowNull: false,
       field: 'password',
     },
+    salt: {
+      type: DataTypes.STRING(32),
+      allowNull: false,
+      field: 'salt',
+    },
     email: {
       type: DataTypes.STRING(128),
       allowNull: false,
@@ -104,6 +112,7 @@ export function aaUserFactory(sequelize: Sequelize) {
     },
     name: {
       type: DataTypes.STRING(64),
+      defaultValue: null,
       allowNull: true,
       field: 'name',
     },

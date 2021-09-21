@@ -4,10 +4,11 @@ import {
 } from 'sequelize';
 
 export interface IAAPswdHistAttributes {
-  pswdHistId: number;
+  pswdHistId?: number;
   password: string;
+  salt: string;
   createdDt: number;
-  userId: number;
+  userId: string;
 }
 
 export function aaPswdHistFactory(sequelize: Sequelize) {
@@ -16,9 +17,11 @@ export function aaPswdHistFactory(sequelize: Sequelize) {
 
     password: string;
 
+    salt: string;
+
     createdDt: number;
 
-    userId: number;
+    userId: string;
 
     /**
      * Helper method for defining associations.
@@ -38,9 +41,14 @@ export function aaPswdHistFactory(sequelize: Sequelize) {
       field: 'pswd_hist_id',
     },
     password: {
-      type: DataTypes.STRING(32),
+      type: DataTypes.STRING(128),
       allowNull: false,
       field: 'password',
+    },
+    salt: {
+      type: DataTypes.STRING(32),
+      allowNull: false,
+      field: 'salt',
     },
     createdDt: {
       type: DataTypes.BIGINT,
@@ -48,7 +56,7 @@ export function aaPswdHistFactory(sequelize: Sequelize) {
       field: 'created_dt',
     },
     userId: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.STRING(36),
       allowNull: false,
       field: 'user_id',
     },

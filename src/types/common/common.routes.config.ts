@@ -17,7 +17,7 @@ export default abstract class CommonRoutesConfig {
       this.baseApiPath = baseApiPath;
       this.baseRouterPath = baseRouterPath;
       this.name = name;
-      this.configureRoutes(); // define routes from extended classes by initialization
+      this.configureRoutes(); // autocall of this method adds routes to project when class instance is initialized
     }
 
     buildPath() {

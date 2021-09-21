@@ -65,4 +65,4 @@ find out usage of enums and namespaces
 read about generics
 change approach of types storing
 
-hash and salt have strange length (set 64 - return 128)
+hash and salt have strange length (set 64 - return 128) - set 64 bytes and change to hex format => 1 byte encodes to 2 hex symbols

@@ -14,6 +14,7 @@ export interface IAAProfileAttributes {
   pswdLenMin: number;
   pswdAlphanum: boolean;
   pswdCase: boolean;
+  pswdHistUnique: number
 }
 
 export function aaProfileFactory(sequelize: Sequelize) {
@@ -37,6 +38,8 @@ export function aaProfileFactory(sequelize: Sequelize) {
     pswdAlphanum: boolean;
 
     pswdCase: boolean;
+
+    pswdHistUnique: number;
 
     /**
      * Helper method for defining associations.
@@ -99,6 +102,11 @@ export function aaProfileFactory(sequelize: Sequelize) {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       field: 'pswd_case',
+    },
+    pswdHistUnique: {
+      type: DataTypes.SMALLINT,
+      allowNull: false,
+      field: 'pswd_hist_unique',
     },
   }, {
     sequelize,

@@ -1,7 +1,8 @@
 import express from 'express';
 import controller from './authentication.controller';
 import middleware from './authentication.middleware';
-import CommonRoutesConfig from '../../common/common.routes.config';
+import CommonRoutesConfig from '../../types/common/common.routes.config';
+import { handlerException } from '../../utils';
 
 export default class AuthenticationRouter extends CommonRoutesConfig {
   constructor(app: express.Application, router: express.Router, baseApiPath: string) {
@@ -9,7 +10,7 @@ export default class AuthenticationRouter extends CommonRoutesConfig {
   }
 
   configureRoutes() {
-    this.router.get('/sign-up', middleware.signUpValidation, controller.signUp);
+    this.router.get('/sign-up', middleware.signUpValidation, handlerException(controller.signUp, true));
 
     this.router.get('/test', controller.test);
 
